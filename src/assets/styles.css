@@ -1,0 +1,303 @@
+:root {
+    --bg-color: #003804;
+    --line-color: #f5f5f5
+}
+
+* {
+    box-sizing: border-box;
+    font-size: 16pt;
+}
+
+body {
+    font-family: Montserrat, sans-serif;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    color: var(--line-color);
+    height: 100vh;
+}
+
+.menu-side {
+    height: 100vh;
+    max-width: 100px;
+    background-color: var(--bg-color);
+}
+
+main {
+    display: flex;
+    flex-grow: 1;
+}
+
+#spectrum-webv {
+    width: 100%;
+    display: none;
+    height: 100%;
+    width: 100%;
+}
+
+#df-view {
+    width: 100%;
+    display: flex;
+    height: 100vh;
+}
+
+.df-status {
+    display: flex;
+    height: fit-content;
+    width: fit-content;
+    flex-direction: column;
+    background-color: var(--bg-color);
+    margin: auto;
+    padding: 20px 10px;
+    border-radius: 10px;
+}
+
+#df-status-webv {
+    width: 300px;
+    height: 440px;
+}
+
+button {
+    cursor: pointer;
+}
+
+.config-menu button:focus,
+.config-menu input:focus,
+.config-menu select:focus{
+  outline: 4px solid red;
+  background-color: whitesmoke;
+}
+
+/* ------------df content----------- */
+.df-content {
+    display: flex;
+    height: 85%;
+    aspect-ratio: 1/1;
+    margin: auto 20px auto auto;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+}
+
+.df-content#dfabsview {
+    background-image: url("absdf.png");
+}
+
+.arrow {
+    height: 68%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+.arrow-line {
+    height: 50%;
+    width: 6px;
+    margin: auto;
+    background-color: yellow;
+}
+
+.angle-value {
+    height: 15%;
+    aspect-ratio: 1/1;
+    display: flex;
+    font-size: 20pt;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 2;
+    border-radius: 50%;
+    position: absolute;
+    background-color: black;
+    border: solid 2px yellow;
+}
+
+/* -------------df content-End----------- */
+
+/* -----------df-config------------ */
+
+#compass-menu {
+    display: none;
+}
+
+#freq-menu {
+    display: none;
+}
+
+.config-menu {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 12px;
+    height: 560px;
+    width: 520px;
+    margin: auto;
+    background-color: var(--bg-color);
+    border-radius: 10px;
+}
+
+.config-menu>*:not(:last-child) {
+    border: solid 2px var(--line-color);
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+.input-field {
+    display: flex;
+    margin: 4px 16px;
+    justify-content: flex-start;
+}
+
+.input-field>label {
+    width: 160px;
+    padding: 4px;
+    margin-right: 4px;
+    border: solid 2px var(--line-color);
+}
+
+.input-field>input {
+    padding: 4px 8px;
+    width: auto;
+}
+
+.input-field>button {
+    padding: 2px 8px;
+    margin-left: auto;
+}
+
+.input-field>button:nth-child(2) {
+    margin-left: 4px;
+}
+
+/* --------------end-df-config---------------- */
+
+/* ------------system control--------- */
+
+.df-system-control {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 16px;
+}
+
+.df-system-control {
+    margin-top: auto;
+    margin-bottom: 8px;
+    padding: 16px;
+    border: solid 2px var(--line-color);
+    border-radius: 10px;
+}
+
+.df-system-control>h4 {
+    min-width: 240px;
+    border-bottom: solid 2px var(--line-color);
+    margin: 0 auto 16px auto;
+    text-align: center;
+}
+
+.df-system-control>button {
+    margin: 0 4px 4px auto;
+}
+
+/* ------------end system control--------- */
+
+
+/* ------------compass-------------------- */
+.compass-field {
+    display: flex;
+    width: 100%;
+}
+
+
+.panel-compass {
+    width: 50%;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    /* background-image: url("compass.png");
+    background-repeat: no-repeat;
+    background-size: cover; */
+
+}
+
+#arrow-compass {
+    width: 50%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    margin: 14px auto;
+    position: relative;
+    border: solid 2px var(--line-color);
+    background-color: black;
+}
+
+.arrow-line-compass {
+    height: 50%;
+    width: 4px;
+    margin: auto;
+    background-color: yellow;
+}
+
+.arrow-line-compass>span {
+    position: relative;
+    top: -24px;
+    font-weight: bold;
+    text-align: center;
+    color: yellow;
+    right: 6px;
+}
+
+#angle-value-compass {
+    width: 50px;
+    aspect-ratio: 1;
+    margin: auto;
+    padding: 2px;
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    background-color: black;
+    border: solid 2px yellow;
+    border-radius: 50%;
+}
+
+
+.edit-compass {
+    display: flex;
+}
+
+.edit-compass>*{
+    margin: 8px auto;
+    text-align: center;
+    width: 100%;
+}
+
+.edit-compass .input-field{
+    margin: 8px auto;
+    width: fit-content;
+}
+
+#input-compass-offset{
+    width: 110px;
+    
+}
+
+#btn-set-compass-offset{
+    padding: 2px 16px;
+}
+
+.btn-save-all{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+#btn-save-coord-config{
+    margin-right: 8px;
+    padding: 4px 16px;
+}
+
+/* ------------end compass-------------------- */
