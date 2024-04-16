@@ -188,6 +188,7 @@ function refreshStatus(fetchURL) {
     const statusWebview = document.getElementById("df-status-webv");
     statusWebview.src = fetchURL + "/config";
     getInitSetting(fetchURL);
+    await readSavedCoord();
     setCompassOffset();
 }
 
@@ -207,8 +208,6 @@ async function getInitSetting(fetchURL) {
         document.getElementById("input-freq").value = centerFreq;
         document.getElementById("input-gain").value = settingJson.uniform_gain.toString() || "";
         document.getElementById("input-station-id").value = settingJson.station_id || "";
-
-        setCompassOffset();
 
     } catch (error) {
         console.log("Get initial config failed...");
