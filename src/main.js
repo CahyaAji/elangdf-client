@@ -7,6 +7,7 @@ import {
     refreshStatus,
     convertLatLngToUtm,
     setCompassOffset,
+    saveCoord
 } from "./handler/handler.js"
 import { getNextFocusElement, getPrevFocusElement } from "./utils/dom-utils.js";
 import { startFetchIntervalGPS, startFetchIntervalCompass, startFetchIntervalDF } from "./handler/interval_req_handler.js";
@@ -109,40 +110,33 @@ document.addEventListener("keydown", function (event) {
 
     if (event.ctrlKey && event.key === 'l') {
         if (btnKeyPressed === "btn-set-freq-gain") {
-            console.log("set freq");
+            setFreq(urlDF);
         }
         if (btnKeyPressed === "btn-set-station-id") {
-            console.log("set station");
-            // setStationId(urlDF);
+            setStationId(urlDF);
         }
         if (btnKeyPressed === "btn-read-gps") {
-            console.log("set read gps");
-            // setLatLng(urlDF);
+            startFetchIntervalGPS(urlDF);
         }
 
         if (btnKeyPressed === "btn-convert-utm") {
-            console.log("set convert utm");
-            // setLatLng(urlDF);
+            convertLatLngToUtm();
         }
 
         if (btnKeyPressed === "btn-set-compass-offset") {
-            console.log("set compass offset");
-            // setLatLng(urlDF);
+            setCompassOffset();
         }
 
         if (btnKeyPressed === "btn-save-coord-config") {
-            console.log("set coord config");
-            // setLatLng(urlDF);
+            saveCoord();
         }
 
         if (btnKeyPressed === "btn-restart") {
-            console.log("set restart");
-            // restartDF(urlDF);
+            restartDF(urlDF);
         }
 
         if (btnKeyPressed === "btn-turnoff") {
-            console.log("set turn-off");
-            // turnOffDF(urlDF);
+            turnOffDF(urlDF);
         }
     }
 });
@@ -170,11 +164,7 @@ latlngToUtmBtn.addEventListener("click", () => { convertLatLngToUtm(); });
 readGpsBtn.addEventListener("click", () => { startFetchIntervalGPS(urlDF); });
 // saveLatlngBtn.addEventListener("click", () => { setLatLng(urlDF) });
 setCmpsOffsBtn.addEventListener("click", () => { setCompassOffset(); });
-
-saveCoordBtn.addEventListener("click", async () => {
-    refreshStatus(urlDF);
-});
-
+saveCoordBtn.addEventListener("click", async () => { saveCoord(); });
 refreshBtn.addEventListener("click", () => { refreshStatus(urlDF) });
 
 

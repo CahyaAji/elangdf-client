@@ -318,4 +318,5 @@ export {
     refreshStatus,
     convertLatLngToUtm,
     setCompassOffset,
+    saveCoord
 };
