@@ -108,7 +108,42 @@ document.addEventListener("keydown", function (event) {
     }
 
     if (event.ctrlKey && event.key === 'l') {
-        
+        if (btnKeyPressed === "btn-set-freq-gain") {
+            console.log("set freq");
+        }
+        if (btnKeyPressed === "btn-set-station-id") {
+            console.log("set station");
+            // setStationId(urlDF);
+        }
+        if (btnKeyPressed === "btn-read-gps") {
+            console.log("set read gps");
+            // setLatLng(urlDF);
+        }
+
+        if (btnKeyPressed === "btn-convert-utm") {
+            console.log("set convert utm");
+            // setLatLng(urlDF);
+        }
+
+        if (btnKeyPressed === "btn-set-compass-offset") {
+            console.log("set compass offset");
+            // setLatLng(urlDF);
+        }
+
+        if (btnKeyPressed === "btn-save-coord-config") {
+            console.log("set coord config");
+            // setLatLng(urlDF);
+        }
+
+        if (btnKeyPressed === "btn-restart") {
+            console.log("set restart");
+            // restartDF(urlDF);
+        }
+
+        if (btnKeyPressed === "btn-turnoff") {
+            console.log("set turn-off");
+            // turnOffDF(urlDF);
+        }
     }
 });
 
@@ -145,17 +180,21 @@ refreshBtn.addEventListener("click", () => { refreshStatus(urlDF) });
 
 
 //Button focus
-const parentButtons = document.querySelector(".config-menu");
-const buttons = parentButtons.querySelectorAll("button");
-buttons.forEach(function (button) {
-    button.addEventListener("focus", function (event) {
-        btnKeyPressed = event.target.id;
-    });
+const parentButtons = document.querySelectorAll(".config-menu");
 
-    button.addEventListener("blur", function (event) {
-        btnKeyPressed = "";
+parentButtons.forEach(function (parentButton) {
+    const buttons = parentButton.querySelectorAll("button");
+    buttons.forEach(function (button) {
+        button.addEventListener("focus", function (event) {
+            btnKeyPressed = event.target.id;
+        });
+
+        button.addEventListener("blur", function (event) {
+            btnKeyPressed = null;
+        });
     });
 });
+
 
 document.addEventListener('DOMContentLoaded', () => {
     refreshStatus(urlDF);

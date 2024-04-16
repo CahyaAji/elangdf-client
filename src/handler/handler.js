@@ -1,6 +1,6 @@
 const { message } = window.__TAURI__.dialog;
 const { invoke } = window.__TAURI__.tauri;
-import { dmsToDecimal, decimalToDMS, isDmsRegexMatch } from "../utils/utils.js";
+import { dmsToDecimal, isDmsRegexMatch } from "../utils/utils.js";
 import { changeCompassOffset } from "./interval_req_handler.js"
 
 
