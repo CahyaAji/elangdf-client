@@ -51,7 +51,7 @@ function setFreqReq(fetchURL, dataFreq) {
         });
 }
 
-//Fix error when set freq <1.2
+
 function setFreq(fetchURL) {
     const centerFreq = document.getElementById("input-freq").value;
     const gains = document.getElementById("input-gain").value
