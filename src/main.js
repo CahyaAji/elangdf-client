@@ -7,7 +7,6 @@ import {
     refreshStatus,
     convertLatLngToUtm,
     setCompassOffset,
-    saveCoord,
 } from "./handler/handler.js"
 import { getNextFocusElement, getPrevFocusElement } from "./utils/dom-utils.js";
 import { startFetchIntervalGPS, startFetchIntervalCompass, startFetchIntervalDF } from "./handler/interval_req_handler.js";
@@ -138,8 +137,9 @@ readGpsBtn.addEventListener("click", () => { startFetchIntervalGPS(urlDF); });
 setCmpsOffsBtn.addEventListener("click", () => { setCompassOffset(); });
 
 saveCoordBtn.addEventListener("click", async () => {
-    await saveCoord();
+    refreshStatus(urlDF);
 });
+
 refreshBtn.addEventListener("click", () => { refreshStatus(urlDF) });
 
 

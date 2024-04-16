@@ -179,12 +179,11 @@ function restartDF(fetchURL) {
             console.log("Success, " + JSON.stringify(result));
         })
         .catch(error => {
-            // message("Error", error);
             message("Power Config", "Restarting DF");
         });
 }
 
-function refreshStatus(fetchURL) {
+async function refreshStatus(fetchURL) {
     const statusWebview = document.getElementById("df-status-webv");
     statusWebview.src = fetchURL + "/config";
     getInitSetting(fetchURL);
@@ -319,5 +318,4 @@ export {
     refreshStatus,
     convertLatLngToUtm,
     setCompassOffset,
-    saveCoord,
 };
