@@ -10,21 +10,24 @@
 </head>
 
 <body>
+  <!-- <div class="menu-side">
+    <div>Lorem, ipsum dolor.</div>
+  </div> -->
   <main>
     <iframe id="spectrum-webv" src=""></iframe>
     <div id="df-view">
       <div class="df-status">
         <div style="display: flex; align-items: center; justify-content: space-between;">
           <div>DF Status:</div>
-          <button style="font-size: larger; border-radius: 50%;" id="btn-refresh">⟳</button>
+          <button style="font-size: larger; border-radius: 50%;">⟳</button>
         </div>
         <iframe id="df-status-webv" frameborder="0"></iframe>
       </div>
-      <div class="config-menu" id="freq-menu">
+      <div class="setup-menu">
         <form id="edit-freq-gain">
           <div class="input-field">
             <label for="input-freq">Frequency</label>
-            <input type="number" id="input-freq" name="input-freq" step="0.000001" required>
+            <input type="number" id="input-freq" name="input-freq" step="0.001" required>
           </div>
           <div class="input-field">
             <label for="input-gain">Gain</label>
@@ -58,7 +61,7 @@
               <option value="49.6">49.6</option>
             </select>
           </div>
-          <div class="input-field">
+          <div class="btn-align-right">
             <button type="button" id="btn-set-freq-gain">Apply</button>
           </div>
         </form>
@@ -67,17 +70,17 @@
             <label for="input-station-id">Unit Name</label>
             <input type="text" id="input-station-id" name="input-station-id" required>
           </div>
-          <div class="input-field">
+          <div class="btn-align-right">
             <button type="button" id="btn-set-station-id">Save Name</button>
           </div>
         </form>
-        <div class="df-system-control">
-          <h4>DF System Control</h4>
-          <button id="btn-restart">Restart</button>
-          <button id="btn-turnoff">Turn OFF</button>
+        <div>
+          <div>DF System Control</div>
+          <div>
+            <button id="btn-restart">Restart</button>
+            <button id="btn-turnoff">Turn OFF</button>
+          </div>
         </div>
-      </div>
-      <div class="config-menu" id="compass-menu">
         <form id="edit-latlng">
           <div class="input-field">
             <label for="input-lat">Latitude</label>
@@ -87,8 +90,9 @@
             <label for="input-lng">Longitude</label>
             <input id="input-lng" name="input-lng" required>
           </div>
-          <div class="input-field">
-            <button type="button" id="btn-read-gps">Read GPS</button>
+          <div class="btn-align-right">
+            <button type="button" id="btn-save-latlng">Save</button>
+            <button type="button" id="btn-read-gps">Read Sensor</button>
             <button type="button" id="btn-convert-utm">Convert UTM</button>
           </div>
           <div class="input-field">
@@ -107,40 +111,36 @@
             <label for="input-co">CO</label>
             <input id="input-co" name="input-co" required>
           </div>
-          <!-- <div class="input-field">
-            <button type="button" id="btn-save-coord">Save</button>
-          </div> -->
         </form>
         <div class="compass-field">
           <div class="panel-compass">
-            <div id="angle-value-compass">000</div>
-            <div id="arrow-compass">
+            <div class="angle-value-compass">000</div>
+            <div class="arrow-compass">
               <div class="arrow-line-compass"><span>N</span></div>
             </div>
           </div>
           <div class="edit-compass">
             <form id="edit-compass-offset">
               <label for="input-compass-offset">Compass Offset Correction</label>
-              <div class="input-field">
-                <input type="number" id="input-compass-offset" name="input-compass-offset" step="0.01" value="0" required>
+              <input type="number" id="input-compass-offset" name="input-compass-offset" step="0.01" required>
+              <div class="btn-align-right">
                 <button type="button" id="btn-set-compass-offset">Apply</button>
               </div>
             </form>
           </div>
         </div>
-        <div class="btn-save-all">
-          <button type="button" id="btn-save-coord-config">Save All</button>
+      </div>
+      <div class="df-content" id="rltv">
+        <div class="angle-value">000</div>
+        <div class="arrow">
+          <div class="arrow-line"></div>
         </div>
       </div>
     </div>
-    <div class="df-content" id="dfabsview">
-      <div class="angle-value">000</div>
-      <div class="arrow">
-        <div class="arrow-line"></div>
-      </div>
-    </div>
-    </div>
   </main>
+  <!-- <div class="menu-side">
+    <div>Lorem, ipsum.</div>
+  </div> -->
 </body>
 
 </html>

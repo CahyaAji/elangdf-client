@@ -7,12 +7,13 @@ import {
     refreshStatus,
     convertLatLngToUtm,
     setCompassOffset,
-    saveCoord
+    saveCoord,
 } from "./handler/handler.js"
 import { getNextFocusElement, getPrevFocusElement } from "./utils/dom-utils.js";
 import { startFetchIntervalGPS, startFetchIntervalCompass, startFetchIntervalDF } from "./handler/interval_req_handler.js";
 
-const urlDF = "http://localhost:3000";
+// const urlDF = "http://localhost:3000";
+const urlDF = "http://10.42.0.33:8087";
 
 let btnKeyPressed = "";
 let currentView = 'w';
@@ -106,6 +107,10 @@ document.addEventListener("keydown", function (event) {
             nextElement.focus();
         }
     }
+
+    if (event.ctrlKey && event.key === 'l') {
+        
+    }
 });
 
 
@@ -119,6 +124,7 @@ const restartBtn = document.getElementById("btn-restart");
 const turnOffBtn = document.getElementById("btn-turnoff");
 const setCmpsOffsBtn = document.getElementById("btn-set-compass-offset");
 const saveCoordBtn = document.getElementById("btn-save-coord-config");
+const refreshBtn = document.getElementById("btn-refresh");
 
 setFreqGainBtn.addEventListener("click", () => { setFreq(urlDF); });
 setStationBtn.addEventListener("click", () => { setStationId(urlDF); });
@@ -133,6 +139,22 @@ setCmpsOffsBtn.addEventListener("click", () => { setCompassOffset(); });
 
 saveCoordBtn.addEventListener("click", async () => {
     await saveCoord();
+});
+refreshBtn.addEventListener("click", () => { refreshStatus(urlDF) });
+
+
+
+//Button focus
+const parentButtons = document.querySelector(".config-menu");
+const buttons = parentButtons.querySelectorAll("button");
+buttons.forEach(function (button) {
+    button.addEventListener("focus", function (event) {
+        btnKeyPressed = event.target.id;
+    });
+
+    button.addEventListener("blur", function (event) {
+        btnKeyPressed = "";
+    });
 });
 
 document.addEventListener('DOMContentLoaded', () => {

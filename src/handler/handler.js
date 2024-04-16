@@ -163,7 +163,7 @@ function turnOffDF(fetchURL) {
             console.log("Success, " + JSON.stringify(result));
         })
         .catch(error => {
-            message("Error", error);
+            message("Power Config", "Mematikan DF dalam waktu maks 1 menit");
         });
 }
 
@@ -179,7 +179,8 @@ function restartDF(fetchURL) {
             console.log("Success, " + JSON.stringify(result));
         })
         .catch(error => {
-            message("Error", error);
+            // message("Error", error);
+            message("Power Config", "Restarting DF");
         });
 }
 
@@ -205,9 +206,9 @@ async function getInitSetting(fetchURL) {
 
         document.getElementById("input-freq").value = centerFreq;
         document.getElementById("input-gain").value = settingJson.uniform_gain.toString() || "";
-        // document.getElementById("input-lat").value = dmsLat || "";
-        // document.getElementById("input-lng").value = dmsLng || "";
         document.getElementById("input-station-id").value = settingJson.station_id || "";
+
+        setCompassOffset();
 
     } catch (error) {
         console.log("Get initial config failed...");
@@ -309,6 +310,7 @@ async function readSavedCoord() {
     document.getElementById("input-compass-offset").value = jsonConf.compassOffset || "";
 }
 
+
 export {
     setFreq,
     setLatLng,
@@ -318,5 +320,5 @@ export {
     refreshStatus,
     convertLatLngToUtm,
     setCompassOffset,
-    saveCoord
+    saveCoord,
 };

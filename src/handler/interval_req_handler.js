@@ -1,3 +1,4 @@
+const { invoke } = window.__TAURI__.tauri;
 import { decimalToDMS } from "../utils/utils.js";
 
 let intervalFetchDF;
@@ -25,6 +26,22 @@ function changeCompassOffset(data) {
 }
 
 async function fetchDF(urlDF) {
+    const urlReq = urlDF + "/df";
+    try {
+        const res = await invoke("request_df", { url: urlReq });
+        const dataArray = res.split(",");
+        const data = {
+            time: dataArray[0].trim(),
+            heading: dataArray[1].trim(),
+        }
+        return data;
+    } catch (error) {
+        return error
+    }
+
+}
+
+async function fetchDFb(urlDF) {
     try {
         const response = await fetch(`${urlDF}/df`);
         if (!response.ok) {
@@ -65,7 +82,8 @@ async function fetchCompass(urlDF) {
             throw new Error("Error Compass");
         }
         const dataCompass = await response.json();
-        return dataCompass;
+        const dataHead = parseFloat(dataCompass.heading)
+        return dataHead;
     } catch (error) {
         return error
     }
@@ -78,7 +96,7 @@ function startFetchIntervalCompass(urlDF) {
 
     intervalFetchCompass = setInterval(() => {
         fetchCompass(urlDF).then(data => {
-            headingCompass = (data.heading + compassOffset) % 360;
+            headingCompass = Math.round((data + compassOffset)) % 360;
             compassValue.innerHTML = headingCompass;
             compassArrow.style.display = "block";
             compassArrow.style.transform = `rotate(${headingCompass}deg)`;
@@ -111,7 +129,7 @@ function startFetchIntervalGPS(urlDF) {
             });
 
         counterIntervalGps++;
-        if (counterIntervalGps >= 7) {
+        if (counterIntervalGps >= 3) {
             stopFetchIntervalGPS();
         }
     }, 3000);
@@ -131,7 +149,8 @@ function startFetchIntervalDF(urlDF) {
     intervalFetchDF = setInterval(() => {
         fetchDF(urlDF).then(data => {
             if (timeStamp !== data.time) {
-                dfValue = (360 + parseFloat(data.heading) - headingCompass) % 360;
+                const df = (360 + parseFloat(data.heading) - headingCompass) % 360;
+                dfValue = df;
                 arrowAbsv.style.display = "block";
                 arrowAbsv.style.transform = `rotate(${dfValue}deg)`;
                 timeStamp = data.time;

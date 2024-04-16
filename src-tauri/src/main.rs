@@ -59,12 +59,26 @@ fn read_file(path: String) -> Result<String, String> {
     }
 }
 
+#[tauri::command]
+async fn request_df(url: String) -> Result<String, String> {
+    let client = reqwest::Client::new();
+
+    match client.get(&url).send().await {
+        Ok(response) => {
+            let body = response.text().await.unwrap_or_else(|_| String::new());
+            Ok(body)
+        }
+        Err(_) => Err("Failed to make request DF".to_string()),
+    }
+}
+
 fn main() {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![
             convert_latlng_to_utm,
             write_file,
-            read_file
+            read_file,
+            request_df
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

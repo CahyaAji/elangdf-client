@@ -1,0 +1,252 @@
+:root {
+  --bg-color: #003804;
+}
+
+* {
+  box-sizing: border-box;
+  font-size: large;
+  /* font-weight: 600; */
+}
+
+body {
+  font-family: Montserrat, sans-serif;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  color: whitesmoke;
+  height: 100vh;
+}
+
+.menu-side {
+  height: 100vh;
+  max-width: 100px;
+  background-color: var(--bg-color);
+  /* opacity: 0.5; */
+}
+
+main {
+  display: flex;
+  flex-grow: 1;
+}
+
+#spectrum-webv {
+  width: 100%;
+  display: none;
+  height: 100%;
+  width: 100%;
+}
+
+#df-view {
+  width: 100%;
+  display: flex;
+  height: 100vh;
+}
+
+.df-status {
+  display: flex;
+  height: fit-content;
+  width:fit-content;
+  flex-direction: column;
+  background-color: var(--bg-color);
+  margin: auto;
+  padding: 20px 10px;
+  border-radius: 10px;
+}
+
+#df-status-webv{
+  width: 300px;
+  height: 440px;
+}
+
+/* -------------df Setup------------ */
+.setup-menu{
+  display: flex;
+  margin: auto;
+  padding: 20px;
+  background-color: var(--bg-color);
+  gap: 10px;
+  height: fit-content;
+  max-height: 520px;
+  flex-direction: column;
+  border-radius: 10px;
+  overflow-y: auto;
+  border: solid 10px var(--bg-color);
+}
+
+.input-field>label {
+  display: inline-block;
+  width: 160px;
+  padding: 4px;
+  border: solid 2px whitesmoke;
+  border-radius: 4px;
+}
+
+.input-field>input {
+  display: inline-block;
+  width: 240px;
+  padding: 4px 8px;
+}
+
+.input-field select {
+  display: inline-block;
+  width: 240px;
+  padding: 4px 8px;
+}
+
+.btn-align-right{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.setup-menu>*{
+  border: solid 2px whitesmoke;
+  padding: 12px 8px;
+  border-radius: 8px;
+}
+
+.setup-menu button{
+  margin: 8px 4px 16px 2px;
+  padding: 2px 8px;
+  font-weight: 700;
+}
+
+
+.setup-menu button:focus,
+.setup-menu input:focus,
+.setup-menu select:focus{
+  outline: 4px solid red;
+  background-color: whitesmoke;
+}
+
+/* -----------df Setup-End--------- */
+
+/* -----------compass field---------- */
+.compass-field{
+  display: flex;
+  width: 100%;
+}
+
+.panel-compass{
+  width: 50%;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-compass{
+  width: 50%;
+  border-left: solid 2px whitesmoke;
+}
+
+.edit-compass>form{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.edit-compass input {
+  width: 80%;
+  margin: 2px 10px;
+}
+
+.arrow-compass{
+  width: 50%;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  margin: 8px auto;
+  position: relative;
+  background-image: url("compass.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: black;
+}
+
+.arrow-line-compass{
+  height: 50%;
+  width: 4px;
+  margin: auto;
+  background-color: yellow;
+}
+
+.arrow-line-compass>span{
+  position: relative;
+  top: -20px;
+  font-weight: bold;
+  text-align: center;
+  color: yellow;
+  right: 6px;
+}
+
+.angle-value-compass {
+  width: fit-content;
+  aspect-ratio: 1;
+  margin: auto;
+  padding: 2px;
+  display: flex;
+  position: absolute;
+  align-items: center;
+  z-index: 2;
+  background-color: black;
+  border: solid 2px yellow;
+  border-radius: 50%;
+}
+
+
+
+/* -------compass field end--------- */
+
+/* ------------df content----------- */
+.df-content{
+  display: none;
+  height: 70%;
+  aspect-ratio: 1/1;
+  margin: auto;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  justify-content: center;
+  align-items: center;
+}
+
+.df-content#rltv{
+  background-image: url("rltvdf.png");
+}
+
+.arrow{
+  height: 68%;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.arrow-line{
+  height: 50%;
+  width: 6px;
+  margin: auto;
+  background-color: yellow;
+}
+
+.angle-value {
+  height: 15%;
+  aspect-ratio: 1/1;
+  display: flex;
+  font-size: 20pt;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 2;
+  border-radius: 50%;
+  position: absolute;
+  background-color: black;
+  border: solid 2px yellow;
+}
+
+/* -------------df content-End----------- */
+
+button {
+  cursor: pointer;
+}
