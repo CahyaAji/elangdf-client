@@ -23,6 +23,7 @@ const dfview = document.getElementById("df-view");
 const freqMenu = document.getElementById("freq-menu");
 const compassMenu = document.getElementById("compass-menu");
 const dfAbsv = document.getElementById("dfabsview");
+const statusWebview = document.getElementById("df-status-webv");
 
 //keyboard shortcut
 document.addEventListener("keydown", function (event) {
@@ -34,6 +35,7 @@ document.addEventListener("keydown", function (event) {
     }
 
     if (event.ctrlKey && event.key === 'w') {
+        statusWebview.src = urlDF + "/config";
         spectrumWebv.style.display = "none";
         spectrumWebv.src = "";
         dfview.style.display = "flex";
@@ -44,6 +46,7 @@ document.addEventListener("keydown", function (event) {
     }
 
     if (event.ctrlKey && event.key === 'e') {
+        statusWebview.src = urlDF + "/config";
         spectrumWebv.style.display = "none";
         spectrumWebv.src = "";
         dfview.style.display = "flex";
@@ -54,6 +57,7 @@ document.addEventListener("keydown", function (event) {
     }
 
     if (event.ctrlKey && event.key === 'r') {
+        statusWebview.src = urlDF + "/config";
         spectrumWebv.style.display = "none";
         spectrumWebv.src = "";
         dfview.style.display = "flex";
@@ -64,6 +68,7 @@ document.addEventListener("keydown", function (event) {
     }
 
     if (event.ctrlKey && event.key === 'h') {
+        statusWebview.src = "";
         spectrumWebv.style.display = "flex";
         spectrumWebv.src = urlDF + "/spectrum";
         dfview.style.display = "none";
@@ -109,6 +114,7 @@ document.addEventListener("keydown", function (event) {
     }
 
     if (event.ctrlKey && event.key === 'l') {
+        console.log(btnKeyPressed);
         if (btnKeyPressed === "btn-set-freq-gain") {
             setFreq(urlDF);
         }
@@ -137,6 +143,13 @@ document.addEventListener("keydown", function (event) {
 
         if (btnKeyPressed === "btn-turnoff") {
             turnOffDF(urlDF);
+        }
+        const button = document.getElementById(btnKeyPressed);
+        if (button) {
+            button.classList.add("active");
+            setTimeout(() => { button.classList.remove("active") }, 1000);
+        } else {
+            console.error("Button element not found with ID:", btnKeyPressed);
         }
     }
 });

@@ -55,7 +55,7 @@ main {
 
 #df-status-webv {
     width: fit-content;
-    height: 444px;
+    height: 472px;
     background-color: black;
 }
 
@@ -65,9 +65,9 @@ button {
 
 .config-menu button:focus,
 .config-menu input:focus,
-.config-menu select:focus{
-  outline: 4px solid red;
-  background-color: whitesmoke;
+.config-menu select:focus {
+    outline: 4px solid red;
+    background-color: whitesmoke;
 }
 
 /* ------------df content----------- */
@@ -270,35 +270,41 @@ button {
     display: flex;
 }
 
-.edit-compass>*{
+.edit-compass>* {
     margin: 8px auto;
     text-align: center;
     width: 100%;
 }
 
-.edit-compass .input-field{
+.edit-compass .input-field {
     margin: 8px auto;
     width: fit-content;
 }
 
-#input-compass-offset{
+#input-compass-offset {
     width: 110px;
-    
+
 }
 
-#btn-set-compass-offset{
+#btn-set-compass-offset {
     padding: 2px 16px;
 }
 
-.btn-save-all{
+.btn-save-all {
     display: flex;
     width: 100%;
     justify-content: flex-end;
 }
 
-#btn-save-coord-config{
+#btn-save-coord-config {
     margin-right: 8px;
     padding: 4px 16px;
+}
+
+.config-menu .active,
+.config-menu .active:focus {
+    background-color: gray;
+    border-color: black;
 }
 
 /* ------------end compass-------------------- */

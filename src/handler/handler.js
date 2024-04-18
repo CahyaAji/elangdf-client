@@ -67,7 +67,16 @@ function setFreq(fetchURL) {
 
     setAntena(fetchURL, antSpace);
 
-    if (centerFreqValue - prevCenterFreq <= Math.abs(1.5)) {
+    const valueGap = Math.abs(centerFreqValue - prevCenterFreq);
+
+    if (valueGap === 0 || valueGap > 1.5) {
+        const data = {
+            center_freq: (centerFreqValue),
+            uniform_gain: parseFloat(gains),
+            ant_spacing_meters: antSpace
+        }
+        setFreqReq(fetchURL, data);
+    } else {
         const data1 = {
             center_freq: (centerFreqValue + 10),
             uniform_gain: parseFloat(gains),
@@ -82,15 +91,34 @@ function setFreq(fetchURL) {
                 ant_spacing_meters: antSpace
             }
             setFreqReq(fetchURL, data2);
-        }, 1000);
-    } else {
-        const data = {
-            center_freq: (centerFreqValue),
-            uniform_gain: parseFloat(gains),
-            ant_spacing_meters: antSpace
-        }
-        setFreqReq(fetchURL, data);
+        }, 3000);
     }
+
+    // if (valueGap <= 1.5) {
+    //     const data1 = {
+    //         center_freq: (centerFreqValue + 10),
+    //         uniform_gain: parseFloat(gains),
+    //         ant_spacing_meters: antSpace
+    //     }
+    //     setFreqReq(fetchURL, data1);
+
+    //     setTimeout(() => {
+    //         const data2 = {
+    //             center_freq: (centerFreqValue),
+    //             uniform_gain: parseFloat(gains),
+    //             ant_spacing_meters: antSpace
+    //         }
+    //         setFreqReq(fetchURL, data2);
+    //     }, 10000);
+    // } else {
+    //     const data = {
+    //         center_freq: (centerFreqValue),
+    //         uniform_gain: parseFloat(gains),
+    //         ant_spacing_meters: antSpace
+    //     }
+    //     setFreqReq(fetchURL, data);
+    // }
+    prevCenterFreq = centerFreqValue;
 }
 
 function setStationId(fetchURL) {
