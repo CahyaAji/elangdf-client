@@ -41,7 +41,7 @@ async function fetchDF(urlDF) {
 
 }
 
-async function fetchDFb(urlDF) {
+async function fetchDF_2(urlDF) {
     try {
         const response = await fetch(`${urlDF}/df`);
         if (!response.ok) {

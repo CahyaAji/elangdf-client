@@ -94,30 +94,6 @@ function setFreq(fetchURL) {
         }, 3000);
     }
 
-    // if (valueGap <= 1.5) {
-    //     const data1 = {
-    //         center_freq: (centerFreqValue + 10),
-    //         uniform_gain: parseFloat(gains),
-    //         ant_spacing_meters: antSpace
-    //     }
-    //     setFreqReq(fetchURL, data1);
-
-    //     setTimeout(() => {
-    //         const data2 = {
-    //             center_freq: (centerFreqValue),
-    //             uniform_gain: parseFloat(gains),
-    //             ant_spacing_meters: antSpace
-    //         }
-    //         setFreqReq(fetchURL, data2);
-    //     }, 10000);
-    // } else {
-    //     const data = {
-    //         center_freq: (centerFreqValue),
-    //         uniform_gain: parseFloat(gains),
-    //         ant_spacing_meters: antSpace
-    //     }
-    //     setFreqReq(fetchURL, data);
-    // }
     prevCenterFreq = centerFreqValue;
 }
 
