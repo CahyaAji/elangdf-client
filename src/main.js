@@ -12,8 +12,8 @@ import {
 import { getNextFocusElement, getPrevFocusElement } from "./utils/dom-utils.js";
 import { startFetchIntervalGPS, startFetchIntervalCompass, startFetchIntervalDF } from "./handler/interval_req_handler.js";
 
-// const urlDF = "http://localhost:3000";
-const urlDF = "http://10.42.0.33:8087";
+const urlDF = "http://localhost:3000";
+// const urlDF = "http://10.42.0.33:8087";
 
 let btnKeyPressed = "";
 let currentView = 'w';

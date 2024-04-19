@@ -30,7 +30,7 @@ function setAntena(fetchURL, antSpace) {
             console.log("Success, " + JSON.stringify(result));
         })
         .catch(error => {
-            message("Error", error);
+            message(error, "Error");
         });
 }
 
@@ -47,7 +47,7 @@ function setFreqReq(fetchURL, dataFreq) {
             console.log("Success, " + JSON.stringify(result));
         })
         .catch(error => {
-            message("Error", error);
+            message(error, "Error");
         });
 }
 
@@ -121,7 +121,7 @@ function setStationId(fetchURL) {
             console.log("Success, " + JSON.stringify(result));
         })
         .catch(error => {
-            message("Error", error);
+            message(error, "Error");
         });
 }
 
@@ -151,7 +151,7 @@ function setLatLng(fetchURL) {
             console.log("Success, " + JSON.stringify(result));
         })
         .catch(error => {
-            message("Error", error);
+            message(error, "Error");
         });
 }
 
@@ -165,9 +165,10 @@ function turnOffDF(fetchURL) {
         .then(response => response.json())
         .then(result => {
             console.log("Success, " + JSON.stringify(result));
+            message("Mematikan DF dalam waktu maks 1 menit", "Power Config");
         })
         .catch(error => {
-            message("Power Config", "Mematikan DF dalam waktu maks 1 menit");
+            message("Mematikan DF dalam waktu maks 1 menit", "Power Config");
         });
 }
 
@@ -181,9 +182,10 @@ function restartDF(fetchURL) {
         .then(response => response.json())
         .then(result => {
             console.log("Success, " + JSON.stringify(result));
+            message("Restart DF, tunggu 1 - 3 menit", "Power Config");
         })
         .catch(error => {
-            message("Power Config", "Restarting DF");
+            message("Restart DF,  tunggu 1 - 3 menit", "Power Config");
         });
 }
 
@@ -230,6 +232,19 @@ async function convertLatLngToUtm() {
         return
     }
 
+    if (!isDmsRegexMatch(latitude)) {
+        message(`Masukan Format Koordinat dengan benar\nContoh:\nLatitude: 6°10'31.36"S\nLongitude: 106°49'37.26"E`, "Error");
+        document.getElementById("input-lat").value = `0°0'0.0"S`;
+        return;
+    }
+
+    if (!isDmsRegexMatch(longitude)) {
+        message(`Masukan Format Koordinat dengan benar\nContoh:\nLatitude: 6°10'31.36"S\nLongitude: 106°49'37.26"E`, "Error");
+        document.getElementById("input-lng").value = `0°0'0.0"E`;
+        return;
+    }
+
+
     const lat = dmsToDecimal(latitude);
     const lng = dmsToDecimal(longitude);
 
@@ -250,16 +265,15 @@ async function convertLatLngToUtm() {
 function setCompassOffset() {
     const inputValue = document.getElementById("input-compass-offset").value;
 
-    if (!isNaN(inputValue) && inputValue >= -180 && inputValue <= 180) {
-        const offset = parseFloat(inputValue);
-        changeCompassOffset(offset.toFixed(2));
+    const numberValue = parseFloat(inputValue);
+
+    if (!isNaN(numberValue) && numberValue >= -180 && numberValue <= 180) {
+        changeCompassOffset(numberValue.toFixed(2));
     } else {
-        message("Error, Nilai offset hanya boleh -180 sampai 180");
+        message("Nilai offset hanya boleh angka -180 sampai 180", "Error");
         document.getElementById("input-compass-offset").value = 0;
         changeCompassOffset(0);
     }
-
-
 }
 
 
@@ -274,13 +288,13 @@ async function saveCoord() {
     const compassOffset = document.getElementById("input-compass-offset").value;
 
     if (!isDmsRegexMatch(latDms)) {
-        message(`Masukan Format Koordinat dengan benar\nContoh:\nLatitude: 6°10'31.36"S\nLongitude: 106°49'37.26"E`);
+        message(`Masukan Format Koordinat dengan benar\nContoh:\nLatitude: 6°10'31.36"S\nLongitude: 106°49'37.26"E`, "Error");
         document.getElementById("input-lat").value = `0°0'0.0"S`;
         return;
     }
 
     if (!isDmsRegexMatch(lngDms)) {
-        message(`Masukan Format Koordinat dengan benar\nContoh:\nLatitude: 6°10'31.36"S\nLongitude: 106°49'37.26"E`);
+        message(`Masukan Format Koordinat dengan benar\nContoh:\nLatitude: 6°10'31.36"S\nLongitude: 106°49'37.26"E`, "Error");
         document.getElementById("input-lng").value = `0°0'0.0"E`;
         return;
     }
