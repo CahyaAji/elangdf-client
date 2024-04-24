@@ -21,7 +21,7 @@
     },
     "windows": [
       {
-        "title": "ElangDF",
+        "title": "CNS-01 DF",
         "minHeight": 590,
         "minWidth": 900,
         "additionalBrowserArgs": "--disable-web-security"

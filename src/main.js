@@ -34,6 +34,10 @@ document.addEventListener("keydown", function (event) {
         }
     }
 
+    if (event.ctrlKey && event.key === 'q') {
+        refreshStatus(urlDF);
+    }
+
     if (event.ctrlKey && event.key === 'w') {
         statusWebview.src = urlDF + "/config";
         spectrumWebv.style.display = "none";

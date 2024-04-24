@@ -1,5 +1,5 @@
 [package]
-name = "elangdf-client"
+name = "cns-df-client"
 version = "1.0.1"
 description = "Radio Direction Finder"
 authors = ["PT SCM"]
