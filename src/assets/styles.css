@@ -66,8 +66,9 @@ button {
 .config-menu button:focus,
 .config-menu input:focus,
 .config-menu select:focus {
-    outline: 4px solid red;
-    background-color: whitesmoke;
+    outline: 4px solid darkorange;
+    background-color: white;
+    font-weight: 700;
 }
 
 /* ------------df content----------- */
