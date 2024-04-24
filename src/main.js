@@ -35,7 +35,17 @@ document.addEventListener("keydown", function (event) {
     }
 
     if (event.ctrlKey && event.key === 'q') {
-        refreshStatus(urlDF);
+        if (currentView = 'h') {
+            statusWebview.src = "";
+            spectrumWebv.style.display = "flex";
+            spectrumWebv.src = urlDF + "/spectrum";
+            dfview.style.display = "none";
+            dfAbsv.style.display = "none";
+            freqMenu.style.display = "none";
+            compassMenu.style.display = "none";
+        } else {
+            refreshStatus(urlDF);
+        }
     }
 
     if (event.ctrlKey && event.key === 'w') {

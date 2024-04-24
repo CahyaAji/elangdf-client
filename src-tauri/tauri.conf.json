@@ -5,7 +5,7 @@
     "withGlobalTauri": true
   },
   "package": {
-    "productName": "ElangDF",
+    "productName": "CNS-01",
     "version": "1.0.1"
   },
   "tauri": {
