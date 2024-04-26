@@ -22,8 +22,9 @@
     "windows": [
       {
         "title": "CNS-01 DF",
-        "minHeight": 590,
-        "minWidth": 900,
+        "minHeight": 540,
+        "height": 550,
+        "minWidth": 1000,
         "additionalBrowserArgs": "--disable-web-security"
       }
     ],

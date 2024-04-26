@@ -34,8 +34,9 @@ document.addEventListener("keydown", function (event) {
         }
     }
 
-    if (event.ctrlKey && event.key === 'q') {
-        if (currentView = 'h') {
+    // refresh
+    if (event.ctrlKey && event.key === 'h') {
+        if (currentView === 'q') {
             statusWebview.src = "";
             spectrumWebv.style.display = "flex";
             spectrumWebv.src = urlDF + "/spectrum";
@@ -48,7 +49,8 @@ document.addEventListener("keydown", function (event) {
         }
     }
 
-    if (event.ctrlKey && event.key === 'w') {
+        //df View
+    if (event.ctrlKey && event.key === 'r') {
         statusWebview.src = urlDF + "/config";
         spectrumWebv.style.display = "none";
         spectrumWebv.src = "";
@@ -56,9 +58,10 @@ document.addEventListener("keydown", function (event) {
         dfAbsv.style.display = "flex";
         freqMenu.style.display = "none";
         compassMenu.style.display = "none";
-        currentView = 'w';
+        currentView = 'r';
     }
 
+        //setting freq
     if (event.ctrlKey && event.key === 'e') {
         statusWebview.src = urlDF + "/config";
         spectrumWebv.style.display = "none";
@@ -70,7 +73,8 @@ document.addEventListener("keydown", function (event) {
         currentView = 'e';
     }
 
-    if (event.ctrlKey && event.key === 'r') {
+    // location menu
+    if (event.ctrlKey && event.key === 'w') {
         statusWebview.src = urlDF + "/config";
         spectrumWebv.style.display = "none";
         spectrumWebv.src = "";
@@ -78,10 +82,11 @@ document.addEventListener("keydown", function (event) {
         dfAbsv.style.display = "none";
         freqMenu.style.display = "none";
         compassMenu.style.display = "flex";
-        currentView = 'r';
+        currentView = 'w';
     }
 
-    if (event.ctrlKey && event.key === 'h') {
+    // spectrum view
+    if (event.ctrlKey && event.key === 'q') {
         statusWebview.src = "";
         spectrumWebv.style.display = "flex";
         spectrumWebv.src = urlDF + "/spectrum";
@@ -89,7 +94,25 @@ document.addEventListener("keydown", function (event) {
         dfAbsv.style.display = "none";
         freqMenu.style.display = "none";
         compassMenu.style.display = "none";
-        currentView = 'h';
+        currentView = 'q';
+    }
+
+    // UP button
+    if (event.ctrlKey && event.key === 'k') {
+        const focusedElement = document.activeElement;
+        let id = '';
+
+        if (currentView === 'e') {
+            id = "freq-menu";
+        }
+
+        if (currentView === 'w') {
+            id = "compass-menu";
+        }
+        const prevElement = getPrevFocusElement(focusedElement, id);
+        if (prevElement) {
+            prevElement.focus();
+        }
     }
 
     if (event.ctrlKey && event.key === 'j') {
@@ -100,24 +123,7 @@ document.addEventListener("keydown", function (event) {
             id = "freq-menu";
         }
 
-        if (currentView === 'r') {
-            id = "compass-menu";
-        }
-        const prevElement = getPrevFocusElement(focusedElement, id);
-        if (prevElement) {
-            prevElement.focus();
-        }
-    }
-
-    if (event.ctrlKey && event.key === 'k') {
-        const focusedElement = document.activeElement;
-        let id = '';
-
-        if (currentView === 'e') {
-            id = "freq-menu";
-        }
-
-        if (currentView === 'r') {
+        if (currentView === 'w') {
             id = "compass-menu";
         }
 
@@ -127,7 +133,7 @@ document.addEventListener("keydown", function (event) {
         }
     }
 
-    if (event.ctrlKey && event.key === 'l') {
+    if (event.ctrlKey && event.key === 'h') {
         console.log(btnKeyPressed);
         if (btnKeyPressed === "btn-set-freq-gain") {
             setFreq(urlDF);
