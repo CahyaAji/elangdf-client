@@ -11,13 +11,16 @@
 
 <body>
   <header>
-    <div><button>DF</button></div>
-    <div><button>Settings</button></div>
-    <div><button>Location</button></div>
-    <div><button>Spectrum</button></div>
+    <div><button disabled id="btn-show-df">DF</button></div>
+    <div><button disabled id="btn-show-setting">Settings</button></div>
+    <div><button disabled id="btn-show-location">Location</button></div>
+    <div><button disabled id="btn-show-spectrum">Spectrum</button></div>
   </header>
   <main>
+    <div id="spectrum-container">
+      <div class="spectrum-view-overlay"></div>
       <iframe id="spectrum-webv" src=""></iframe>
+    </div>
     <div id="df-view">
       <div class="df-status">
         <div style="display: flex; align-items: center; justify-content: space-between;">
@@ -33,7 +36,8 @@
         <form id="edit-freq-gain">
           <div class="input-field">
             <label for="input-freq">Frequency</label>
-            <input type="number" id="input-freq" name="input-freq" step="0.000001" required>
+            <input type="number" id="input-freq" name="input-freq" step="0.001" required>
+            <span style="margin: auto 8px;">MHz</span>
           </div>
           <div class="input-field">
             <label for="input-gain">Gain</label>
@@ -66,6 +70,7 @@
               <option value="48.0">48.0</option>
               <option value="49.6">49.6</option>
             </select>
+            <span style="margin: auto 8px;">dB</span>
           </div>
           <div class="input-field">
             <button type="button" id="btn-set-freq-gain">Apply</button>
@@ -81,9 +86,12 @@
           </div>
         </form>
         <div class="df-system-control">
-          <h4>DF System Control</h4>
-          <button id="btn-restart">Restart</button>
+          <h4>DF Power Control</h4>
+          <div style="display: flex;">
+            <button id="btn-restart">Restart</button>
           <button id="btn-turnoff">Turn OFF</button>
+          </div>
+          
         </div>
       </div>
       <div class="config-menu" id="compass-menu">
@@ -131,7 +139,8 @@
             <form id="edit-compass-offset">
               <label for="input-compass-offset">Compass Offset Correction</label>
               <div class="input-field">
-                <input type="number" id="input-compass-offset" name="input-compass-offset" step="0.01" value="0" required>
+                <input type="number" id="input-compass-offset" name="input-compass-offset" step="0.01" value="0"
+                  required>
                 <button type="button" id="btn-set-compass-offset">Apply</button>
               </div>
             </form>
@@ -151,10 +160,10 @@
     </div>
   </main>
   <footer>
-    <div><button>Refresh</button></div>
-    <div><button>UP</button></div>
-    <div><button>Down</button></div>
-    <div><button>OK</button></div>
+    <div><button disabled id="btn-refresh-2">Refresh</button></div>
+    <div><button disabled id="btn-menu-up">UP</button></div>
+    <div><button disabled id="btn-menu-down">Down</button></div>
+    <div><button disabled id="btn-menu-ok">OK</button></div>
   </footer>
 </body>
 

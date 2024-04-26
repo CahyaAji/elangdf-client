@@ -19,11 +19,17 @@ let btnKeyPressed = "";
 let currentView = 'w';
 
 const spectrumWebv = document.getElementById("spectrum-webv");
+const spectrumView = document.getElementById("spectrum-container");
 const dfview = document.getElementById("df-view");
 const freqMenu = document.getElementById("freq-menu");
 const compassMenu = document.getElementById("compass-menu");
 const dfAbsv = document.getElementById("dfabsview");
 const statusWebview = document.getElementById("df-status-webv");
+
+const btnShowDF = document.getElementById("btn-show-df");
+const btnShowSetting = document.getElementById("btn-show-setting");
+const btnShowLocation = document.getElementById("btn-show-location");
+const btnShowSpectrum = document.getElementById("btn-show-spectrum");
 
 //keyboard shortcut
 document.addEventListener("keydown", function (event) {
@@ -35,10 +41,10 @@ document.addEventListener("keydown", function (event) {
     }
 
     // refresh
-    if (event.ctrlKey && event.key === 'h') {
+    if (event.ctrlKey && event.key === 'l') {
         if (currentView === 'q') {
             statusWebview.src = "";
-            spectrumWebv.style.display = "flex";
+            spectrumView.style.display = "flex";
             spectrumWebv.src = urlDF + "/spectrum";
             dfview.style.display = "none";
             dfAbsv.style.display = "none";
@@ -49,51 +55,95 @@ document.addEventListener("keydown", function (event) {
         }
     }
 
-        //df View
+    //df View
     if (event.ctrlKey && event.key === 'r') {
+
+        if(currentView === 'r') {
+            return
+        }
+
         statusWebview.src = urlDF + "/config";
-        spectrumWebv.style.display = "none";
+        spectrumView.style.display = "none";
         spectrumWebv.src = "";
         dfview.style.display = "flex";
         dfAbsv.style.display = "flex";
         freqMenu.style.display = "none";
         compassMenu.style.display = "none";
+        
+        btnShowDF.style.backgroundColor = "red";
+        btnShowSetting.style.backgroundColor = "var(--bg-color)";
+        btnShowLocation.style.backgroundColor = "var(--bg-color)";
+        btnShowSpectrum.style.backgroundColor = "var(--bg-color)";
+
         currentView = 'r';
     }
 
-        //setting freq
+    //setting freq
     if (event.ctrlKey && event.key === 'e') {
+
+        if(currentView === 'e') {
+            return
+        }
+
         statusWebview.src = urlDF + "/config";
-        spectrumWebv.style.display = "none";
+        spectrumView.style.display = "none";
         spectrumWebv.src = "";
         dfview.style.display = "flex";
         dfAbsv.style.display = "none";
         freqMenu.style.display = "flex";
         compassMenu.style.display = "none";
+
+        btnShowDF.style.backgroundColor = "var(--bg-color)";
+        btnShowSetting.style.backgroundColor = "red";
+        btnShowLocation.style.backgroundColor = "var(--bg-color)";
+        btnShowSpectrum.style.backgroundColor = "var(--bg-color)";
+        
+
         currentView = 'e';
     }
 
     // location menu
     if (event.ctrlKey && event.key === 'w') {
+        if(currentView === 'w') {
+            return
+        }
+
         statusWebview.src = urlDF + "/config";
-        spectrumWebv.style.display = "none";
+        spectrumView.style.display = "none";
         spectrumWebv.src = "";
         dfview.style.display = "flex";
         dfAbsv.style.display = "none";
         freqMenu.style.display = "none";
         compassMenu.style.display = "flex";
+
+        btnShowDF.style.backgroundColor = "var(--bg-color)";
+        btnShowSetting.style.backgroundColor = "var(--bg-color)";
+        btnShowLocation.style.backgroundColor = "red";
+        btnShowSpectrum.style.backgroundColor = "var(--bg-color)";
+
         currentView = 'w';
     }
 
     // spectrum view
     if (event.ctrlKey && event.key === 'q') {
+
+        if(currentView === 'q') {
+            return
+        }
+
         statusWebview.src = "";
-        spectrumWebv.style.display = "flex";
+        spectrumView.style.display = "flex";
         spectrumWebv.src = urlDF + "/spectrum";
         dfview.style.display = "none";
         dfAbsv.style.display = "none";
         freqMenu.style.display = "none";
         compassMenu.style.display = "none";
+
+        btnShowDF.style.backgroundColor = "var(--bg-color)";
+        btnShowSetting.style.backgroundColor = "var(--bg-color)";
+        btnShowLocation.style.backgroundColor = "var(--bg-color)";
+        btnShowSpectrum.style.backgroundColor = "red";
+
         currentView = 'q';
     }
 
@@ -221,6 +271,17 @@ parentButtons.forEach(function (parentButton) {
 
 document.addEventListener('DOMContentLoaded', () => {
     refreshStatus(urlDF);
+    // statusWebview.src = urlDF + "/config";
+    spectrumView.style.display = "none";
+    spectrumWebv.src = "";
+    dfview.style.display = "flex";
+    dfAbsv.style.display = "flex";
+    freqMenu.style.display = "none";
+    compassMenu.style.display = "none";
+
+    btnShowDF.style.backgroundColor = "red";
+
+    currentView = 'r';
 });
 
 startFetchIntervalCompass(urlDF);
