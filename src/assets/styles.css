@@ -53,10 +53,24 @@ main {
     border-radius: 10px;
 }
 
+.status-container{
+    position: relative;
+}
+
+
+.status-overlay{
+    position: absolute;
+    background-color: rgba(255, 0, 0, 0.3);
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+}
+
 #df-status-webv {
     width: fit-content;
-    height: 472px;
+    height: 430px;
     background-color: black;
+    z-index: 0;
 }
 
 button {

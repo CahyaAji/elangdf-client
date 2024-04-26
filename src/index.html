@@ -11,20 +11,23 @@
 
 <body>
   <header>
-    <div>DF</div>
-    <div>Settings</div>
-    <div>Location</div>
-    <div>Spectrum</div>
+    <div><button>DF</button></div>
+    <div><button>Settings</button></div>
+    <div><button>Location</button></div>
+    <div><button>Spectrum</button></div>
   </header>
   <main>
-    <iframe id="spectrum-webv" src=""></iframe>
+      <iframe id="spectrum-webv" src=""></iframe>
     <div id="df-view">
       <div class="df-status">
         <div style="display: flex; align-items: center; justify-content: space-between;">
           <div>DF Status:</div>
           <button style="font-size: larger; border-radius: 50%;" id="btn-refresh">⟳</button>
         </div>
-        <iframe id="df-status-webv" frameborder="0"></iframe>
+        <div class="status-container">
+          <div class="status-overlay"></div>
+          <iframe id="df-status-webv" frameborder="0"></iframe>
+        </div>
       </div>
       <div class="config-menu" id="freq-menu">
         <form id="edit-freq-gain">
@@ -148,10 +151,10 @@
     </div>
   </main>
   <footer>
-    <div>Refresh</div>
-    <div>UP</div>
-    <div>Down</div>
-    <div>OK</div>
+    <div><button>Refresh</button></div>
+    <div><button>UP</button></div>
+    <div><button>Down</button></div>
+    <div><button>OK</button></div>
   </footer>
 </body>
 
