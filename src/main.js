@@ -268,26 +268,6 @@ parentButtons.forEach(function (parentButton) {
     });
 });
 
-// Detect touch events
-document.addEventListener('touchstart', function(event) {
-    // Check if the touch event target is an input field or textarea
-    if (event.target.nodeName === 'INPUT' || event.target.nodeName === 'TEXTAREA') {
-        // Prevent the default behavior (showing on-screen keyboard)
-        event.preventDefault();
-        // Blur the input field to remove focus
-        event.target.blur();
-    }
-}, { passive: false }); // Make sure to set passive to false to prevent default
-
-// For some browsers, touchmove events may also need to be handled
-document.addEventListener('touchmove', function(event) {
-    if (event.target.nodeName === 'INPUT' || event.target.nodeName === 'TEXTAREA') {
-        event.preventDefault();
-        event.target.blur();
-    }
-}, { passive: false });
-
-
 
 document.addEventListener('DOMContentLoaded', () => {
     refreshStatus(urlDF);

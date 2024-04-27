@@ -5,13 +5,7 @@ function getNextFocusElement(currentElement, id) {
     if (currentIndex === -1 || currentIndex === focusableElements.length - 1) {
         return focusableElements[0];
     }
-
-    const nextElement = focusableElements[currentIndex + 1];
-    if (nextElement.tagName.toLowerCase() === 'input') {
-        nextElement.blur();
-    }
-
-    return nextElement;
+    return focusableElements[currentIndex + 1];
 }
 
 function getPrevFocusElement(currentElement, id) {
@@ -21,14 +15,7 @@ function getPrevFocusElement(currentElement, id) {
     if (currentIndex === -1 || currentIndex === 0) {
         return focusableElements[focusableElements.length - 1];
     }
-    const prevElement = focusableElements[currentIndex - 1];
-
-    // Prevent the default behavior (opening the on-screen keyboard)
-    if (prevElement.tagName.toLowerCase() === 'input') {
-        prevElement.blur();
-    }
-
-    return prevElement;
+    return focusableElements[currentIndex - 1];
 }
 
 function getFocusableElementsWithinId(id) {
