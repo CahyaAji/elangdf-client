@@ -74,6 +74,7 @@ async fn request_df(url: String) -> Result<String, String> {
 
 fn main() {
     tauri::Builder::default()
+    .plugin(tauri_plugin_window_state::Builder::default().build())
         .invoke_handler(tauri::generate_handler![
             convert_latlng_to_utm,
             write_file,
