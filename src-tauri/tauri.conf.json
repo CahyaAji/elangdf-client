@@ -23,8 +23,9 @@
       {
         "title": "CNS-01 DF",
         "minHeight": 540,
+        "minWidth": 900,
         "height": 550,
-        "minWidth": 1000,
+        "width": 980,
         "additionalBrowserArgs": "--disable-web-security"
       }
     ],
