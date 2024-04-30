@@ -93,6 +93,10 @@ button {
     cursor: pointer;
 }
 
+button:active{
+    background-color: red;
+}
+
 .config-menu button:focus,
 .config-menu input:focus,
 .config-menu select:focus {

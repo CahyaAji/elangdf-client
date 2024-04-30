@@ -31,6 +31,145 @@ const btnShowSetting = document.getElementById("btn-show-setting");
 const btnShowLocation = document.getElementById("btn-show-location");
 const btnShowSpectrum = document.getElementById("btn-show-spectrum");
 
+const btnUp = document.getElementById("btn-menu-up");
+const btnDown = document.getElementById("btn-menu-down");
+const btnOk = document.getElementById("btn-menu-ok");
+const btnRefresh = document.getElementById("btn-refresh-side");
+
+function setDisplayDF() {
+    statusWebview.src = urlDF + "/config";
+    spectrumView.style.display = "none";
+    spectrumWebv.src = "";
+    dfview.style.display = "flex";
+    dfAbsv.style.display = "flex";
+    freqMenu.style.display = "none";
+    compassMenu.style.display = "none";
+
+    btnShowDF.style.backgroundColor = "red";
+    btnShowSetting.style.backgroundColor = "var(--bg-color)";
+    btnShowLocation.style.backgroundColor = "var(--bg-color)";
+    btnShowSpectrum.style.backgroundColor = "var(--bg-color)";
+}
+
+function setDisplaySettingFreq() {
+    statusWebview.src = urlDF + "/config";
+    spectrumView.style.display = "none";
+    spectrumWebv.src = "";
+    dfview.style.display = "flex";
+    dfAbsv.style.display = "none";
+    freqMenu.style.display = "flex";
+    compassMenu.style.display = "none";
+
+    btnShowDF.style.backgroundColor = "var(--bg-color)";
+    btnShowSetting.style.backgroundColor = "red";
+    btnShowLocation.style.backgroundColor = "var(--bg-color)";
+    btnShowSpectrum.style.backgroundColor = "var(--bg-color)";
+}
+
+function setDisplayLocation() {
+    statusWebview.src = urlDF + "/config";
+    spectrumView.style.display = "none";
+    spectrumWebv.src = "";
+    dfview.style.display = "flex";
+    dfAbsv.style.display = "none";
+    freqMenu.style.display = "none";
+    compassMenu.style.display = "flex";
+
+    btnShowDF.style.backgroundColor = "var(--bg-color)";
+    btnShowSetting.style.backgroundColor = "var(--bg-color)";
+    btnShowLocation.style.backgroundColor = "red";
+    btnShowSpectrum.style.backgroundColor = "var(--bg-color)";
+}
+
+function setDisplaySpectrum() {
+    statusWebview.src = "";
+    spectrumView.style.display = "flex";
+    spectrumWebv.src = urlDF + "/spectrum";
+    dfview.style.display = "none";
+    dfAbsv.style.display = "none";
+    freqMenu.style.display = "none";
+    compassMenu.style.display = "none";
+
+    btnShowDF.style.backgroundColor = "var(--bg-color)";
+    btnShowSetting.style.backgroundColor = "var(--bg-color)";
+    btnShowLocation.style.backgroundColor = "var(--bg-color)";
+    btnShowSpectrum.style.backgroundColor = "red";
+}
+
+function nextMenu() {
+    const focusedElement = document.activeElement;
+    let id = '';
+
+    if (currentView === 'e') {
+        id = "freq-menu";
+    }
+
+    if (currentView === 'w') {
+        id = "compass-menu";
+    }
+
+    const nextElement = getNextFocusElement(focusedElement, id);
+    if (nextElement) {
+        nextElement.focus();
+    }
+}
+
+function prevMenu() {
+    const focusedElement = document.activeElement;
+    let id = '';
+
+    if (currentView === 'e') {
+        id = "freq-menu";
+    }
+
+    if (currentView === 'w') {
+        id = "compass-menu";
+    }
+    const prevElement = getPrevFocusElement(focusedElement, id);
+    if (prevElement) {
+        prevElement.focus();
+    }
+}
+
+function okMenu() {
+    if (btnKeyPressed === "btn-set-freq-gain") {
+        setFreq(urlDF);
+    }
+    if (btnKeyPressed === "btn-set-station-id") {
+        setStationId(urlDF);
+    }
+    if (btnKeyPressed === "btn-read-gps") {
+        startFetchIntervalGPS(urlDF);
+    }
+
+    if (btnKeyPressed === "btn-convert-utm") {
+        convertLatLngToUtm();
+    }
+
+    if (btnKeyPressed === "btn-set-compass-offset") {
+        setCompassOffset();
+    }
+
+    if (btnKeyPressed === "btn-save-coord-config") {
+        saveCoord();
+    }
+
+    if (btnKeyPressed === "btn-restart") {
+        restartDF(urlDF);
+    }
+
+    if (btnKeyPressed === "btn-turnoff") {
+        turnOffDF(urlDF);
+    }
+    const button = document.getElementById(btnKeyPressed);
+    if (button) {
+        button.classList.add("active");
+        setTimeout(() => { button.classList.remove("active") }, 1000);
+    } else {
+        console.error("Button element not found with ID:", btnKeyPressed);
+    }
+}
+
 //keyboard shortcut
 document.addEventListener("keydown", function (event) {
     if (event.key === "Enter") {
@@ -43,13 +182,7 @@ document.addEventListener("keydown", function (event) {
     // refresh
     if (event.ctrlKey && event.key === 'l') {
         if (currentView === 'q') {
-            statusWebview.src = "";
-            spectrumView.style.display = "flex";
-            spectrumWebv.src = urlDF + "/spectrum";
-            dfview.style.display = "none";
-            dfAbsv.style.display = "none";
-            freqMenu.style.display = "none";
-            compassMenu.style.display = "none";
+            setDisplaySpectrum();
         } else {
             refreshStatus(urlDF);
         }
@@ -57,170 +190,52 @@ document.addEventListener("keydown", function (event) {
 
     //df View
     if (event.ctrlKey && event.key === 'r') {
-
-        if(currentView === 'r') {
-            return
+        if (currentView === 'r') {
+            return;
         }
-
-        statusWebview.src = urlDF + "/config";
-        spectrumView.style.display = "none";
-        spectrumWebv.src = "";
-        dfview.style.display = "flex";
-        dfAbsv.style.display = "flex";
-        freqMenu.style.display = "none";
-        compassMenu.style.display = "none";
-        
-        btnShowDF.style.backgroundColor = "red";
-        btnShowSetting.style.backgroundColor = "var(--bg-color)";
-        btnShowLocation.style.backgroundColor = "var(--bg-color)";
-        btnShowSpectrum.style.backgroundColor = "var(--bg-color)";
-
+        setDisplayDF();
         currentView = 'r';
     }
 
     //setting freq
     if (event.ctrlKey && event.key === 'e') {
-
-        if(currentView === 'e') {
-            return
+        if (currentView === 'e') {
+            return;
         }
-
-        statusWebview.src = urlDF + "/config";
-        spectrumView.style.display = "none";
-        spectrumWebv.src = "";
-        dfview.style.display = "flex";
-        dfAbsv.style.display = "none";
-        freqMenu.style.display = "flex";
-        compassMenu.style.display = "none";
-
-        btnShowDF.style.backgroundColor = "var(--bg-color)";
-        btnShowSetting.style.backgroundColor = "red";
-        btnShowLocation.style.backgroundColor = "var(--bg-color)";
-        btnShowSpectrum.style.backgroundColor = "var(--bg-color)";
-        
-
+        setDisplaySettingFreq();
         currentView = 'e';
     }
 
     // location menu
     if (event.ctrlKey && event.key === 'w') {
-        if(currentView === 'w') {
-            return
+        if (currentView === 'w') {
+            return;
         }
-
-        statusWebview.src = urlDF + "/config";
-        spectrumView.style.display = "none";
-        spectrumWebv.src = "";
-        dfview.style.display = "flex";
-        dfAbsv.style.display = "none";
-        freqMenu.style.display = "none";
-        compassMenu.style.display = "flex";
-
-        btnShowDF.style.backgroundColor = "var(--bg-color)";
-        btnShowSetting.style.backgroundColor = "var(--bg-color)";
-        btnShowLocation.style.backgroundColor = "red";
-        btnShowSpectrum.style.backgroundColor = "var(--bg-color)";
-
+        setDisplayLocation();
         currentView = 'w';
     }
 
     // spectrum view
     if (event.ctrlKey && event.key === 'q') {
-
-        if(currentView === 'q') {
-            return
+        if (currentView === 'q') {
+            return;
         }
-
-        statusWebview.src = "";
-        spectrumView.style.display = "flex";
-        spectrumWebv.src = urlDF + "/spectrum";
-        dfview.style.display = "none";
-        dfAbsv.style.display = "none";
-        freqMenu.style.display = "none";
-        compassMenu.style.display = "none";
-
-        btnShowDF.style.backgroundColor = "var(--bg-color)";
-        btnShowSetting.style.backgroundColor = "var(--bg-color)";
-        btnShowLocation.style.backgroundColor = "var(--bg-color)";
-        btnShowSpectrum.style.backgroundColor = "red";
-
+        setDisplaySpectrum();
         currentView = 'q';
     }
 
     // UP button
     if (event.ctrlKey && event.key === 'k') {
-        const focusedElement = document.activeElement;
-        let id = '';
-
-        if (currentView === 'e') {
-            id = "freq-menu";
-        }
-
-        if (currentView === 'w') {
-            id = "compass-menu";
-        }
-        const prevElement = getPrevFocusElement(focusedElement, id);
-        if (prevElement) {
-            prevElement.focus();
-        }
+        prevMenu();
     }
 
+    //down button
     if (event.ctrlKey && event.key === 'j') {
-        const focusedElement = document.activeElement;
-        let id = '';
-
-        if (currentView === 'e') {
-            id = "freq-menu";
-        }
-
-        if (currentView === 'w') {
-            id = "compass-menu";
-        }
-
-        const nextElement = getNextFocusElement(focusedElement, id);
-        if (nextElement) {
-            nextElement.focus();
-        }
+        nextMenu();
     }
 
     if (event.ctrlKey && event.key === 'h') {
-        console.log(btnKeyPressed);
-        if (btnKeyPressed === "btn-set-freq-gain") {
-            setFreq(urlDF);
-        }
-        if (btnKeyPressed === "btn-set-station-id") {
-            setStationId(urlDF);
-        }
-        if (btnKeyPressed === "btn-read-gps") {
-            startFetchIntervalGPS(urlDF);
-        }
-
-        if (btnKeyPressed === "btn-convert-utm") {
-            convertLatLngToUtm();
-        }
-
-        if (btnKeyPressed === "btn-set-compass-offset") {
-            setCompassOffset();
-        }
-
-        if (btnKeyPressed === "btn-save-coord-config") {
-            saveCoord();
-        }
-
-        if (btnKeyPressed === "btn-restart") {
-            restartDF(urlDF);
-        }
-
-        if (btnKeyPressed === "btn-turnoff") {
-            turnOffDF(urlDF);
-        }
-        const button = document.getElementById(btnKeyPressed);
-        if (button) {
-            button.classList.add("active");
-            setTimeout(() => { button.classList.remove("active") }, 1000);
-        } else {
-            console.error("Button element not found with ID:", btnKeyPressed);
-        }
+        okMenu();
     }
 });
 
@@ -262,27 +277,68 @@ parentButtons.forEach(function (parentButton) {
             btnKeyPressed = event.target.id;
         });
 
-        button.addEventListener("blur", function (event) {
+        button.addEventListener("blur", function (_event) {
             btnKeyPressed = null;
         });
     });
 });
 
-
+//Side Buttons
+btnShowDF.addEventListener('click', () => {
+    if (currentView === 'r') {
+        return;
+    }
+    setDisplayDF();
+    currentView = 'r';
+});
+btnShowSetting.addEventListener('click', () => {
+    if (currentView === 'e') {
+        return;
+    }
+    setDisplaySettingFreq();
+    currentView = 'e';
+});
+btnShowLocation.addEventListener('click', () => {
+    if (currentView === 'w') {
+        return;
+    }
+    setDisplayLocation();
+    currentView = 'w';
+});
+btnShowSpectrum.addEventListener('click', () => {
+    if (currentView === 'q') {
+        return;
+    }
+    setDisplaySpectrum();
+    currentView = 'q';
+});
+btnRefresh.addEventListener('click', () => {
+    if (currentView === 'q') {
+        setDisplaySpectrum();
+    } else {
+        refreshStatus(urlDF);
+    }
+});
+btnUp.addEventListener('mousedown', (event) => {
+    event.preventDefault();
+    prevMenu();
+    console.log("prev");
+});
+btnDown.addEventListener('mousedown', (event) => {
+    event.preventDefault();
+    nextMenu();
+    console.log("next");
+});
+btnOk.addEventListener('mousedown', (event) => {
+    event.preventDefault();
+    okMenu();
+    console.log("ok");
+});
 
 
 document.addEventListener('DOMContentLoaded', () => {
+    setDisplayDF();
     refreshStatus(urlDF);
-    // statusWebview.src = urlDF + "/config";
-    spectrumView.style.display = "none";
-    spectrumWebv.src = "";
-    dfview.style.display = "flex";
-    dfAbsv.style.display = "flex";
-    freqMenu.style.display = "none";
-    compassMenu.style.display = "none";
-
-    btnShowDF.style.backgroundColor = "red";
-
     currentView = 'r';
 });
 
