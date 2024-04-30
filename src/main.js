@@ -269,6 +269,8 @@ parentButtons.forEach(function (parentButton) {
 });
 
 
+
+
 document.addEventListener('DOMContentLoaded', () => {
     refreshStatus(urlDF);
     // statusWebview.src = urlDF + "/config";

@@ -104,10 +104,10 @@ button {
 /* ------------df content----------- */
 .df-content {
     display: flex;
-    height: 85%;
+    height: 82%;
+    min-height: 400px;
     aspect-ratio: 1/1;
-    margin: auto 20px auto auto;
-    border-radius: 50%;
+    margin: auto;
     background-repeat: no-repeat;
     background-size: cover;
     justify-content: center;
@@ -119,7 +119,7 @@ button {
 }
 
 .arrow {
-    height: 68%;
+    height: 65%;
     aspect-ratio: 1/1;
     border-radius: 50%;
     margin: 0 auto;
@@ -348,8 +348,7 @@ button {
 
 header, footer{
     display: grid;
-    background-color: black;
-    padding: 20px 0;
+    align-items: center;
     width: 118px;
 }
 
