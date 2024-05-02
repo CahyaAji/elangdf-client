@@ -149,7 +149,8 @@ function startFetchIntervalDF(urlDF) {
     intervalFetchDF = setInterval(() => {
         fetchDF(urlDF).then(data => {
             if (timeStamp !== data.time) {
-                const df = (360 + parseFloat(data.heading) - headingCompass) % 360;
+                // const df = (360 + parseFloat(data.heading) - headingCompass) % 360;
+                const df = (360 - parseFloat(data.heading) + headingCompass) % 360;
                 dfValue = df;
                 arrowAbsv.style.display = "block";
                 arrowAbsv.style.transform = `rotate(${dfValue}deg)`;
