@@ -193,7 +193,8 @@ async function refreshStatus(fetchURL) {
     const statusWebview = document.getElementById("df-status-webv");
     statusWebview.src = fetchURL + "/config";
     getInitSetting(fetchURL);
-    await readSavedCoord();
+    //mark 1
+    // await readSavedCoord(); 
     setCompassOffset();
 }
 
