@@ -122,6 +122,11 @@ button:active{
     background-image: url("absdf.png");
 }
 
+.df-content#dfrltview {
+    display: none;
+    background-image: url("rltvdf.png");
+}
+
 .arrow {
     height: 65%;
     aspect-ratio: 1/1;
