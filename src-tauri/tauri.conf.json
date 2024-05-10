@@ -6,7 +6,7 @@
   },
   "package": {
     "productName": "CNS-01",
-    "version": "1.0.3"
+    "version": "1.0.4"
   },
   "tauri": {
     "allowlist": {

@@ -16,8 +16,8 @@ import {
   startFetchIntervalDF,
 } from "./handler/interval_req_handler.js";
 
-const urlDF = "http://10.42.0.52:8087";
-// const urlDF = "http://192.168.17.17:8087";
+// const urlDF = "http://10.42.0.52:8087";
+const urlDF = "http://192.168.17.17:8087";
 
 let btnKeyPressed = "";
 let currentView = "w";
@@ -47,6 +47,7 @@ function setDisplayDF() {
   statusWebview.src = urlDF + "/config";
   spectrumView.style.display = "none";
   spectrumWebv.src = "";
+  dfview.style.display = "flex";
 
   if (dfViewMode === "0") {
     dfRltv.style.display = "none";

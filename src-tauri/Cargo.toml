@@ -1,6 +1,6 @@
 [package]
 name = "cns-df-client"
-version = "1.0.3"
+version = "1.0.4"
 description = "Radio Direction Finder"
 authors = ["PT SCM"]
 edition = "2021"
@@ -11,7 +11,7 @@ edition = "2021"
 tauri-build = { version = "1", features = [] }
 
 [dependencies]
-tauri = { version = "1", features = [ "dialog-all", "shell-open"] }
+tauri = { version = "1", features = ["dialog-all", "shell-open"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 utm = "0.1.6"
