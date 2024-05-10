@@ -49,7 +49,7 @@ function setDisplayDF() {
   spectrumWebv.src = "";
   dfview.style.display = "flex";
 
-  if (dfViewMode === "0") {
+  if (dfViewMode === "1") {
     dfRltv.style.display = "none";
     dfAbsv.style.display = "flex";
   } else {
