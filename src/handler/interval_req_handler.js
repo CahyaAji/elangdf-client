@@ -98,7 +98,7 @@ function startFetchIntervalCompass(urlDF) {
   intervalFetchCompass = setInterval(() => {
     fetchCompass(urlDF)
       .then((data) => {
-        headingCompass = Math.round(data + compassOffset) % 360;
+        headingCompass = (360 + Math.round(data + compassOffset)) % 360;
         compassValue.innerHTML = headingCompass;
         compassArrow.style.display = "block";
         compassArrow.style.transform = `rotate(${headingCompass}deg)`;
