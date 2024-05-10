@@ -155,7 +155,7 @@ function startFetchIntervalDF(urlDF) {
         if (timeStamp !== data.time) {
           // const df = (360 + parseFloat(data.heading) - headingCompass) % 360;
           const df = 360 - parseFloat(data.heading);
-          dfAbsvalue = (df + headingCompass) % 360;
+          dfAbsvalue = (360 + df + headingCompass) % 360;
           dfRltvalue = df % 360;
           arrowAbsv.style.display = "block";
           arrowRltv.style.display = "block";
