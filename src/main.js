@@ -208,39 +208,39 @@ document.addEventListener("keydown", function (event) {
     }
   }
 
-  //df View
+  // setting freq
   if (event.ctrlKey && (event.key === "r" || event.key === "R")) {
     if (currentView === "r") {
       return;
     }
-    setDisplayDF();
+    setDisplaySettingFreq();
     currentView = "r";
   }
 
-  //setting freq
+  // spectrum view
   if (event.ctrlKey && (event.key === "e" || event.key === "E")) {
     if (currentView === "e") {
       return;
     }
-    setDisplaySettingFreq();
+    setDisplaySpectrum();
     currentView = "e";
   }
 
-  // location menu
+  // DF view
   if (event.ctrlKey && (event.key === "w" || event.key === "W")) {
     if (currentView === "w") {
       return;
     }
-    setDisplayLocation();
+    setDisplayDF();
     currentView = "w";
   }
 
-  // spectrum view
+  // Location
   if (event.ctrlKey && (event.key === "q" || event.key === "Q")) {
     if (currentView === "q") {
       return;
     }
-    setDisplaySpectrum();
+    setDisplayLocation();
     currentView = "q";
   }
 
@@ -371,7 +371,7 @@ btnOk.addEventListener("mousedown", (event) => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  setDisplayDF();
+  setDisplaySettingFreq();
   refreshStatus(urlDF);
   currentView = "r";
 });

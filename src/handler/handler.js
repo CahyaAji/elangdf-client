@@ -82,6 +82,10 @@ function setFreq(fetchURL) {
     return;
   }
 
+  if (centerFreq > 1710) {
+    message("Frekuensi terlalu besar", "Error");
+  }
+
   const centerFreqValue = parseFloat(centerFreq);
 
   const antSpace = centerFreqValue >= 250 ? 0.25 : 0.45;
