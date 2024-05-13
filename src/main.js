@@ -20,7 +20,7 @@ import {
 const urlDF = "http://192.168.17.17:8087";
 
 let btnKeyPressed = "";
-let currentView = "w";
+let currentView = "setting";
 
 const spectrumWebv = document.getElementById("spectrum-webv");
 const spectrumView = document.getElementById("spectrum-container");
@@ -118,11 +118,11 @@ function nextMenu() {
   const focusedElement = document.activeElement;
   let id = "";
 
-  if (currentView === "e") {
+  if (currentView === "setting") {
     id = "freq-menu";
   }
 
-  if (currentView === "w") {
+  if (currentView === "location") {
     id = "compass-menu";
   }
 
@@ -136,11 +136,11 @@ function prevMenu() {
   const focusedElement = document.activeElement;
   let id = "";
 
-  if (currentView === "e") {
+  if (currentView === "setting") {
     id = "freq-menu";
   }
 
-  if (currentView === "w") {
+  if (currentView === "location") {
     id = "compass-menu";
   }
   const prevElement = getPrevFocusElement(focusedElement, id);
@@ -201,7 +201,7 @@ document.addEventListener("keydown", function (event) {
 
   // refresh
   if (event.ctrlKey && (event.key === "l" || event.key === "L")) {
-    if (currentView === "q") {
+    if (currentView === "spectrum") {
       setDisplaySpectrum();
     } else {
       refreshStatus(urlDF);
@@ -210,38 +210,38 @@ document.addEventListener("keydown", function (event) {
 
   // setting freq
   if (event.ctrlKey && (event.key === "r" || event.key === "R")) {
-    if (currentView === "r") {
+    if (currentView === "setting") {
       return;
     }
     setDisplaySettingFreq();
-    currentView = "r";
+    currentView = "setting";
   }
 
   // spectrum view
   if (event.ctrlKey && (event.key === "e" || event.key === "E")) {
-    if (currentView === "e") {
+    if (currentView === "spectrum") {
       return;
     }
     setDisplaySpectrum();
-    currentView = "e";
+    currentView = "spectrum";
   }
 
   // DF view
   if (event.ctrlKey && (event.key === "w" || event.key === "W")) {
-    if (currentView === "w") {
+    if (currentView === "df") {
       return;
     }
     setDisplayDF();
-    currentView = "w";
+    currentView = "df";
   }
 
   // Location
   if (event.ctrlKey && (event.key === "q" || event.key === "Q")) {
-    if (currentView === "q") {
+    if (currentView === "location") {
       return;
     }
     setDisplayLocation();
-    currentView = "q";
+    currentView = "location";
   }
 
   // UP button
@@ -320,35 +320,35 @@ parentButtons.forEach(function (parentButton) {
 
 //Side Buttons
 btnShowDF.addEventListener("click", () => {
-  if (currentView === "r") {
+  if (currentView === "df") {
     return;
   }
   setDisplayDF();
-  currentView = "r";
+  currentView = "df";
 });
 btnShowSetting.addEventListener("click", () => {
-  if (currentView === "e") {
+  if (currentView === "setting") {
     return;
   }
   setDisplaySettingFreq();
-  currentView = "e";
+  currentView = "setting";
 });
 btnShowLocation.addEventListener("click", () => {
-  if (currentView === "w") {
+  if (currentView === "location") {
     return;
   }
   setDisplayLocation();
-  currentView = "w";
+  currentView = "location";
 });
 btnShowSpectrum.addEventListener("click", () => {
-  if (currentView === "q") {
+  if (currentView === "spectrum") {
     return;
   }
   setDisplaySpectrum();
-  currentView = "q";
+  currentView = "spectrum";
 });
 btnRefresh.addEventListener("click", () => {
-  if (currentView === "q") {
+  if (currentView === "spectrum") {
     setDisplaySpectrum();
   } else {
     refreshStatus(urlDF);
@@ -357,23 +357,20 @@ btnRefresh.addEventListener("click", () => {
 btnUp.addEventListener("mousedown", (event) => {
   event.preventDefault();
   prevMenu();
-  console.log("prev");
 });
 btnDown.addEventListener("mousedown", (event) => {
   event.preventDefault();
   nextMenu();
-  console.log("next");
 });
 btnOk.addEventListener("mousedown", (event) => {
   event.preventDefault();
   okMenu();
-  console.log("ok");
 });
 
 document.addEventListener("DOMContentLoaded", () => {
   setDisplaySettingFreq();
   refreshStatus(urlDF);
-  currentView = "r";
+  currentView = "setting";
 });
 
 startFetchIntervalCompass(urlDF);

@@ -1,5 +1,6 @@
 const { message } = window.__TAURI__.dialog;
 const { invoke } = window.__TAURI__.tauri;
+const { exit } = window.__TAURI__.process;
 import { dmsToDecimal, isDmsRegexMatch } from "../utils/utils.js";
 import { changeCompassOffset } from "./interval_req_handler.js";
 
@@ -180,7 +181,7 @@ function setLatLng(fetchURL) {
     });
 }
 
-function turnOffDF(fetchURL) {
+async function turnOffDF(fetchURL) {
   fetch(fetchURL + "/api/shutdown", {
     method: "POST",
     headers: {
@@ -195,6 +196,10 @@ function turnOffDF(fetchURL) {
     .catch((error) => {
       message("Mematikan DF dalam waktu maks 1 menit", "Power Config");
     });
+
+  setTimeout(async () => {
+    await exit(1);
+  }, 2000);
 }
 
 function restartDF(fetchURL) {
@@ -212,6 +217,10 @@ function restartDF(fetchURL) {
     .catch((error) => {
       message("Restart DF,  tunggu 1 - 3 menit", "Power Config");
     });
+
+  setTimeout(async () => {
+    await exit(1);
+  }, 2000);
 }
 
 async function refreshStatus(fetchURL) {
